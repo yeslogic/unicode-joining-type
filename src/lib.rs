@@ -8,8 +8,8 @@
 //! assert_eq!(get_joining_type('A'), JoiningType::NonJoining);
 //! ```
 
-pub mod joining_type;
-pub mod tables;
+mod joining_type;
+mod tables;
 pub use joining_type::get_joining_type;
 pub use tables::JoiningType;
 

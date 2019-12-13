@@ -14,6 +14,7 @@ pub enum JoiningType {
     Transparent,
 }
 
+#[allow(dead_code)]
 pub const JOINING_TYPE: &'static [(u32, u32, JoiningType)] = &[
     (0, 172, JoiningType::NonJoining),
     (173, 173, JoiningType::Transparent),
