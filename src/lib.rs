@@ -30,7 +30,7 @@ mod test {
         assert_eq!(get_joining_type('ھ'), JoiningType::DualJoining);
         assert_eq!(get_joining_type('𐫍'), JoiningType::LeftJoining);
         assert_eq!(get_joining_type('د'), JoiningType::RightJoining);
-        // Unicode 12.1: assert_eq!(get_joining_type('𞥋'), JoiningType::Transparent);
+        assert_eq!(get_joining_type('𞥋'), JoiningType::Transparent);
         assert_eq!(get_joining_type('ـ'), JoiningType::JoinCausing);
     }
 }
