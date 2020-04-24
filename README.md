@@ -17,8 +17,8 @@ unicode-joining-type
 
 <br>
 
-Fast lookup of the Unicode Joining Type property for `char` in Rust using
-Unicode 12.1 data.
+Fast lookup of the Unicode Joining Type and Joining Group propertes for `char`
+in Rust using Unicode 12.1 data.
 
 Usage
 -----
@@ -34,27 +34,31 @@ unicode-joining-type = "0.2.0"
 
 ```rust
 use unicode_joining_type::{get_joining_type, JoiningType};
+use unicode_joining_type::{get_joining_group, JoiningGroup};
 
 fn main() {
     assert_eq!(get_joining_type('A'), JoiningType::NonJoining);
+    assert_eq!(get_joining_group('ھ'), JoiningGroup::KnottedHeh);
 }
 ```
 
 Performance & Implementation Notes
 ----------------------------------
 
-[ucd-generate] is used to generate `tables.rs`. A build script (`build.rs`)
-compiles this into a two level look up table. The look up time is constant as
-it is just indexing into two arrays.
+[ucd-generate] is used to generate `joining_type_tables.rs` and
+`joining_group_tables.rs`. A build script (`build.rs`) compiles each of these
+into a two level look up tables. The look up time is constant as it is just
+indexing into two arrays.
 
 The two level approach maps a code point to a block, then to a position within
 a block. The allows the second level of block to be deduplicated, saving space.
 The code is parameterised over the block size, which must be a power of 2. The
 value in the build script is optimal for the data set.
 
-This approach trades off some space for faster lookups. The tables take up
-about 26KiB. Benchmarks showed this approach to be ~5–10× faster than the
-typical binary search approach.
+This approach trades off some space for faster lookups. The joining type tables
+take up about 26KiB, the joining group tables take up about 6.75KiB. Benchmarks
+showed this approach to be ~5–10× faster than the typical binary search
+approach.
 
 There is still room for further size reduction. For example, by eliminating
 repeated block mappings at the end of the first level block array.
