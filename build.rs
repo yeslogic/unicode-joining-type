@@ -1,3 +1,5 @@
+#[path = "src/joining_group_tables.rs"]
+mod joining_group_tables;
 #[path = "src/joining_type_tables.rs"]
 mod joining_type_tables;
 
@@ -9,13 +11,17 @@ use std::io::Write;
 use std::path::{Path, PathBuf};
 
 use block::{Block, BlockSize};
+use joining_group_tables::{JoiningGroup, JOINING_GROUP};
 use joining_type_tables::{JoiningType, JOINING_TYPE};
 
 fn main() {
     let output_path = PathBuf::from(env::var("OUT_DIR").unwrap()).join("joining_type.rs");
     let joining_type_table = CompiledTable::compile(JOINING_TYPE);
-
     write_joining_type_table(&output_path, &joining_type_table);
+
+    let output_path = PathBuf::from(env::var("OUT_DIR").unwrap()).join("joining_group.rs");
+    let joining_group_table = CompiledTable::compile(JOINING_GROUP);
+    write_joining_group_table(&output_path, &joining_group_table);
 }
 
 struct CompiledTable<T>
@@ -72,6 +78,75 @@ where
             last_code_point,
         }
     }
+}
+
+fn write_joining_group_table(path: &Path, compiled_table: &CompiledTable<JoiningGroup>) {
+    let mut output =
+        File::create(&path).expect(&format!("unable to open {}", path.to_string_lossy()));
+
+    writeln!(output, "use crate::JoiningGroup;").unwrap();
+    writeln!(output, "use crate::JoiningGroup::*;").unwrap();
+
+    writeln!(
+        output,
+        "\nconst LAST_CODEPOINT: u32 = 0x{:X};",
+        compiled_table.last_code_point
+    )
+    .unwrap();
+    writeln!(
+        output,
+        "\nconst BLOCK_SIZE: usize = {};",
+        JoiningGroup::SIZE
+    )
+    .unwrap();
+
+    // Write out the blocks in address order
+    writeln!(
+        output,
+        "\nconst JOINING_GROUP_BLOCKS: [JoiningGroup; {}] = [",
+        compiled_table.blocks.len() * JoiningGroup::SIZE
+    )
+    .unwrap();
+
+    for (address, block) in &compiled_table.blocks {
+        writeln!(output, "// BLOCK: {:04X}\n", address).unwrap();
+        for (i, joining_group) in block.iter().enumerate() {
+            if i != 0 && (i & 0xF) == 0 {
+                writeln!(output).unwrap();
+            }
+
+            write!(output, "{:?},", joining_group).unwrap();
+        }
+
+        write!(output, "\n\n").unwrap();
+    }
+    writeln!(output, "];").unwrap();
+
+    write!(output, "\n\n").unwrap();
+
+    // Write out constants for the block offsets
+    for (index, (address, _)) in compiled_table.blocks.iter().enumerate() {
+        writeln!(
+            output,
+            "const BLOCK_OFFSET_{:04X}: u16 = 0x{:04X};",
+            address,
+            index * JoiningGroup::SIZE
+        )
+        .unwrap();
+    }
+
+    // Write out the array that maps joining groups to offsets
+    writeln!(
+        output,
+        "\nconst JOINING_GROUP_BLOCK_OFFSETS: [u16; {}] = [",
+        compiled_table.address_to_block_index.len()
+    )
+    .unwrap();
+    for &(_, index) in &compiled_table.address_to_block_index {
+        let (block_address, _) = compiled_table.blocks[index];
+        writeln!(output, "    BLOCK_OFFSET_{:04X},", block_address).unwrap();
+    }
+    writeln!(output, "];").unwrap();
 }
 
 fn write_joining_type_table(path: &Path, compiled_table: &CompiledTable<JoiningType>) {
@@ -166,6 +241,16 @@ impl Default for JoiningType {
 
 impl BlockSize for JoiningType {
     const SIZE: usize = 256;
+}
+
+impl Default for JoiningGroup {
+    fn default() -> Self {
+        JoiningGroup::NoJoiningGroup
+    }
+}
+
+impl BlockSize for JoiningGroup {
+    const SIZE: usize = 512;
 }
 
 mod block {

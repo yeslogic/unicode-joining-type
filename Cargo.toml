@@ -11,8 +11,8 @@ repository = "https://github.com/yeslogic/unicode-joining-type"
 readme = "README.md"
 license = "Apache-2.0"
 
-description = "Fast lookup of the Unicode Joining Type property for char"
-keywords = ["unicode", "joining", "type", "arabic", "shaping"]
+description = "Fast lookup of the Unicode Joining Type and Joining Group properties"
+keywords = ["unicode", "joining", "type", "group", "arabic", "shaping"]
 categories = ["text-processing"]
 
 [badges]

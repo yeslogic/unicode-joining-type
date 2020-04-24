@@ -16,9 +16,9 @@ pub fn get_joining_type(chr: char) -> JoiningType {
     let u = chr as u32;
 
     if u <= LAST_CODEPOINT {
-        return JOINING_TYPE_BLOCKS
-            [JOINING_TYPE_BLOCK_OFFSETS[u as usize >> SHIFT] as usize + (u as usize & MASK)];
+        JOINING_TYPE_BLOCKS
+            [JOINING_TYPE_BLOCK_OFFSETS[u as usize >> SHIFT] as usize + (u as usize & MASK)]
     } else {
-        return NonJoining;
+        NonJoining
     }
 }
