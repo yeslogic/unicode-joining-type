@@ -1,5 +1,5 @@
-#[path = "src/tables.rs"]
-mod tables;
+#[path = "src/joining_type_tables.rs"]
+mod joining_type_tables;
 
 use std::cmp::Ordering;
 use std::convert::TryFrom;
@@ -9,7 +9,7 @@ use std::io::Write;
 use std::path::{Path, PathBuf};
 
 use block::{Block, BlockSize};
-use tables::{JoiningType, JOINING_TYPE};
+use joining_type_tables::{JoiningType, JOINING_TYPE};
 
 fn main() {
     let output_path = PathBuf::from(env::var("OUT_DIR").unwrap()).join("joining_type.rs");

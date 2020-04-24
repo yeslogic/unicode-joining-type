@@ -9,9 +9,9 @@
 //! ```
 
 mod joining_type;
-mod tables;
+mod joining_type_tables;
 pub use joining_type::get_joining_type;
-pub use tables::JoiningType;
+pub use joining_type_tables::JoiningType;
 
 /// The version of [Unicode](http://www.unicode.org/)
 /// that this version of unicode-joining-type was generated from.
