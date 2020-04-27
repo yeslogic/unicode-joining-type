@@ -1,11 +1,11 @@
 [package]
 name = "unicode-joining-type"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["YesLogic Pty. Ltd. <info@yeslogic.com>"]
 edition = "2018"
 
 homepage = "https://github.com/yeslogic/unicode-joining-type"
-documentation = "https://docs.rs/crate/unicode-joining-type"
+documentation = "https://docs.rs/unicode-joining-type/0.3.0/unicode_joining_type/"
 repository = "https://github.com/yeslogic/unicode-joining-type"
 
 readme = "README.md"
