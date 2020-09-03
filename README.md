@@ -23,15 +23,6 @@ in Rust using Unicode 12.1 data.
 Usage
 -----
 
-`Cargo.toml`:
-
-```toml
-[dependencies]
-unicode-joining-type = "0.3.0"
-```
-
-`main.rs`:
-
 ```rust
 use unicode_joining_type::{get_joining_type, JoiningType};
 use unicode_joining_type::{get_joining_group, JoiningGroup};
