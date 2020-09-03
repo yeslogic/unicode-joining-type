@@ -27,7 +27,7 @@ Usage
 
 ```toml
 [dependencies]
-unicode-joining-type = "0.2.0"
+unicode-joining-type = "0.3.0"
 ```
 
 `main.rs`:
