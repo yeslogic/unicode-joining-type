@@ -10,6 +10,7 @@ unicode-joining-type
   <a href="https://crates.io/crates/unicode-joining-type">
     <img src="https://img.shields.io/crates/v/unicode-joining-type.svg" alt="Version">
   </a>
+  <img src="https://img.shields.io/badge/unicode-13.0-informational" alt="Unicode Version">
   <a href="https://github.com/yeslogic/unicode-joining-type/blob/master/LICENSE">
     <img src="https://img.shields.io/crates/l/unicode-joining-type.svg" alt="License">
   </a>
@@ -17,8 +18,8 @@ unicode-joining-type
 
 <br>
 
-Fast lookup of the Unicode Joining Type and Joining Group propertes for `char`
-in Rust using Unicode 12.1 data.
+Fast lookup of the Unicode Joining Type and Joining Group properties for `char`
+in Rust using Unicode 13.0 data.
 
 Usage
 -----
@@ -54,4 +55,4 @@ approach.
 There is still room for further size reduction. For example, by eliminating
 repeated block mappings at the end of the first level block array.
 
-[ucd-generate]: https://github.com/BurntSushi/ucd-generate
+[ucd-generate]: https://github.com/yeslogic/ucd-generate
