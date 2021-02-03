@@ -9,6 +9,8 @@
 //! assert_eq!(get_joining_group('ھ'), JoiningGroup::KnottedHeh);
 //! ```
 
+#![no_std]
+
 mod joining_type;
 mod joining_type_tables;
 pub use joining_type::get_joining_type;
