@@ -19,7 +19,7 @@ unicode-joining-type
 <br>
 
 Fast lookup of the Unicode Joining Type and Joining Group properties for `char`
-in Rust using Unicode 13.0 data.
+in Rust using Unicode 13.0 data. This crate is no-std compatible.
 
 Usage
 -----
