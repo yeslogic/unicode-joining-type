@@ -23,7 +23,7 @@ pub use joining_group_tables::JoiningGroup;
 
 /// The version of [Unicode](http://www.unicode.org/)
 /// that this version of unicode-joining-type was generated from.
-pub const UNICODE_VERSION: (u64, u64, u64) = (13, 0, 0);
+pub const UNICODE_VERSION: (u64, u64, u64) = (14, 0, 0);
 
 #[cfg(test)]
 mod test {
