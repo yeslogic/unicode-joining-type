@@ -10,7 +10,7 @@ unicode-joining-type
   <a href="https://crates.io/crates/unicode-joining-type">
     <img src="https://img.shields.io/crates/v/unicode-joining-type.svg" alt="Version">
   </a>
-  <img src="https://img.shields.io/badge/unicode-13.0-informational" alt="Unicode Version">
+  <img src="https://img.shields.io/badge/unicode-14.0-informational" alt="Unicode Version">
   <a href="https://github.com/yeslogic/unicode-joining-type/blob/master/LICENSE">
     <img src="https://img.shields.io/crates/l/unicode-joining-type.svg" alt="License">
   </a>
@@ -19,7 +19,7 @@ unicode-joining-type
 <br>
 
 Fast lookup of the Unicode Joining Type and Joining Group properties for `char`
-in Rust using Unicode 13.0 data. This crate is no-std compatible.
+in Rust using Unicode 14.0 data. This crate is no-std compatible.
 
 Usage
 -----
