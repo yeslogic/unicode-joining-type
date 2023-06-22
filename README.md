@@ -2,8 +2,8 @@ unicode-joining-type
 ====================
 
 <div align="center">
-  <a href="https://travis-ci.com/yeslogic/unicode-joining-type">
-    <img src="https://travis-ci.com/yeslogic/unicode-joining-type.svg?branch=master" alt="Build Status"></a>
+  <a href="https://github.com/yeslogic/unicode-joining-type/actions/workflows/ci.yml">
+    <img src="https://github.com/yeslogic/unicode-joining-type/actions/workflows/ci.yml/badge.svg" alt="Build Status"></a>
   <a href="https://docs.rs/unicode-joining-type">
     <img src="https://docs.rs/unicode-joining-type/badge.svg" alt="Documentation">
   </a>
